@@ -12,12 +12,14 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 #Give a unique ID for the drone
 #===================================================================
 myID = "DRONE_ID"
+#drone_1 och drone_2
 #===================================================================
 
 # Get initial longitude and latitude the drone
 #===================================================================
 current_longitude = 0
 current_latitude = 0
+# fixa sen, drönarna ska ha olika
 #===================================================================
 
 drone_info = {'id': myID,
@@ -26,9 +28,19 @@ drone_info = {'id': myID,
                 'status': 'idle'
             }
 
+def get_location():
+    try:
+        with open("coordinates.txt", "r") as f:
+            data = f.read().split(",")
+            lat = float(data[0])
+            long = float(data[1])
+            return = lat,long
+        except FileNotFoundError:
+            return 0.0, 0.0
+
 # Fill in the IP address of server, and send the initial location of the drone to the SERVER
 #===================================================================
-SERVER="http://SERVER_IP:PORT/drone"
+SERVER="http://192.168.10.4:6379/drone"
 with requests.Session() as session:
     resp = session.post(SERVER, json=drone_info)
 #===================================================================
@@ -38,8 +50,7 @@ def main():
     coords = request.json
     # Get current longitude and latitude of the drone 
     #===================================================================
-    current_longitude = 0
-    current_latitude = 0
+    current_longitude, current_latitude = get_location()
     #===================================================================
     from_coord = coords['from']
     to_coord = coords['to']

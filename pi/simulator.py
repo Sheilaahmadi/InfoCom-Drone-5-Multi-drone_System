@@ -75,3 +75,7 @@ if __name__ == "__main__":
     # drone_long and drone_lat is the final location when delivery is completed, find a way to save the value,
     # and use it for the initial coordinates of next delivery in drone.py
     #=============================================================================
+    def save_location (lat, long):
+        with open("coordinates.txt", "w", encoding="utf-8") as f:
+            f.write(f"{lat}, {long}")
+            
