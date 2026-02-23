@@ -13,7 +13,8 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
 # change this to connect to your redis server
 # ===============================================
-redis_server = redis.Redis("REDIS_SERVER", decode_responses=True)
+# redis_server = redis.Redis("REDIS_SERVER", decode_responses=True)
+redis_server = redis.Redis(host="localhost", port=6379, decode_responses=True)
 # ===============================================
 
 geolocator = Nominatim(user_agent="my_request")
