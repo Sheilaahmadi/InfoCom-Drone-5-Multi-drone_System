@@ -47,11 +47,11 @@ def run(id, current_coords, from_coords, to_coords, SERVER_URL):
                          }
             resp = session.post(SERVER_URL, json=drone_info)
     return drone_coords[0], drone_coords[1]
-   
+
 if __name__ == "__main__":
     # Fill in the IP address of server, in order to location of the drone to the SERVER
     #===================================================================
-    SERVER_URL = "http://192.168.10.4:6379/drone"
+    SERVER_URL = "http://192.168.10.4:5000/drone"
     #===================================================================
 
     parser = argparse.ArgumentParser()
@@ -77,5 +77,7 @@ if __name__ == "__main__":
     #=============================================================================
     def save_location (lat, long):
         with open("coordinates.txt", "w", encoding="utf-8") as f:
-            f.write(f"{lat}, {long}")
+            f.write(f"{long}, {lat}")
+    
+    save_location(drone_long, drone_lat)
             

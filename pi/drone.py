@@ -34,13 +34,13 @@ def get_location():
             data = f.read().split(",")
             lat = float(data[0])
             long = float(data[1])
-            return = lat,long
-        except FileNotFoundError:
-            return 0.0, 0.0
+            return lat, long
+    except FileNotFoundError:
+        return 0.0, 0.0
 
 # Fill in the IP address of server, and send the initial location of the drone to the SERVER
 #===================================================================
-SERVER="http://192.168.10.4:6379/drone"
+SERVER="http://192.168.10.4:5000/drone"
 with requests.Session() as session:
     resp = session.post(SERVER, json=drone_info)
 #===================================================================
@@ -50,7 +50,7 @@ def main():
     coords = request.json
     # Get current longitude and latitude of the drone 
     #===================================================================
-    current_longitude, current_latitude = get_location()
+    current_latitude, current_longitude = get_location()
     #===================================================================
     from_coord = coords['from']
     to_coord = coords['to']
