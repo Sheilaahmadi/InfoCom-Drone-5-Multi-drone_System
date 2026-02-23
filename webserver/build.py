@@ -53,6 +53,27 @@ def get_drones():
     # use function translate() to covert the coodirnates to svg coordinates
     #=============================================================================================================================================
     drone_dict = {}
+    
+    drone_keys = r.keys("DRONE*")
+    
+    for key in drone_keys:
+        drone_id = key.decode('utf-8')
+        
+        data = r.hgetall(drone_id)
+        
+        if data:
+            
+            long = float(data[b'longitude'].decode('utf-8'))
+            lat = float(data[b.l'latitude'].decode('utf-8'))
+            status = data[b'status'].decode('utf-8')
+            
+            svg_long, svg_lat = translate(long, lat)
+            
+            drone_dict[drone_id] = {
+                'longitude': svg_long
+                'latitude': svg_lat
+                'status': status
+                }
     return jsonify(drone_dict)
 
 if __name__ == "__main__":
