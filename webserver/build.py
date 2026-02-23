@@ -14,7 +14,8 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
 # change this so that you can connect to your redis server
 # ===============================================
-redis_server = redis.Redis("REDIS_SERVER", decode_responses=True)
+# redis_server = redis.Redis("REDIS_SERVER", decode_responses=True)
+redis_server = redis.Redis(host="localhost", port=6379, decode_responses=True)
 # ===============================================
 
 # Translate OSM coordinate (longitude, latitude) to SVG coordinates (x,y).
