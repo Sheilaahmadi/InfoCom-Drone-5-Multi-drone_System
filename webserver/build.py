@@ -54,24 +54,23 @@ def get_drones():
     #=============================================================================================================================================
     drone_dict = {}
     
-    drone_keys = r.keys("DRONE*")
+    drone_keys = redis_server.keys("DRONE*")
     
-    for key in drone_keys:
-        drone_id = key.decode('utf-8')
+    for drone_id in drone_keys:
         
-        data = r.hgetall(drone_id)
+        data = redis_server.hgetall(drone_id)
         
         if data:
             
-            long = float(data[b'longitude'].decode('utf-8'))
-            lat = float(data[b.l'latitude'].decode('utf-8'))
-            status = data[b'status'].decode('utf-8')
+            long = float(data['longitude'])
+            lat = float(data['latitude'])
+            status = data['status']
             
-            svg_long, svg_lat = translate(long, lat)
+            svg_long, svg_lat = translate((long, lat))
             
             drone_dict[drone_id] = {
-                'longitude': svg_long
-                'latitude': svg_lat
+                'longitude': svg_long,
+                'latitude': svg_lat,
                 'status': status
                 }
     return jsonify(drone_dict)

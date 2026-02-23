@@ -49,27 +49,22 @@ def route_planner():
         # if no drone is availble:
         
         drone_keys = redis_server.keys("DRONE*")
-        target_drone_id = None
         target_drone_ip = None
         
         for key in drone_keys:
             drone_data = redis_server.hgetall(key)
             
             if drone_data.get('status') == 'idle':
-                target_drone_id = key
                 target_drone_ip = drone_data.get('ip')
                 break
             
-        if target_drone_id is None:
-            message = 'No available drone, try later'
-            return message
-        else:
+        if target_drone_ip is None:
+            return 'No available drone, try later'
             # 2. Get the IP of available drone, 
-            DRONE_URL = 'http://' + target_drone_ip +':5000'
+        DRONE_URL = 'http://' + target_drone_ip +':5000'
             # 3. Send coords to the URL of available drone
-            send_request(DRONE_URL. coords)
-            message = 'Got address and sent request to the drone'
-        return message
+        send_request(DRONE_URL, coords)
+        return 'Got address and sent request to the drone'
         # ======================================================================
 
 
