@@ -12,14 +12,14 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 #Give a unique ID for the drone
 #===================================================================
 myID = "DRONE_1, DRONE_2"
-#drone_1 och drone_2
+#Välj antingen drone 1 eller drone 2
 #===================================================================
 
 # Get initial longitude and latitude the drone
 #===================================================================
-current_longitude = 0
-current_latitude = 0
-# fixa sen, drönarna ska ha olika
+current_longitude = 13.2091
+current_latitude = 55.7126
+# Ändra lite sådrönarna startar olika
 #===================================================================
 
 drone_info = {'id': myID,
