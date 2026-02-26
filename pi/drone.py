@@ -11,7 +11,7 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
 #Give a unique ID for the drone
 #===================================================================
-myID = "DRONE_1, DRONE_2"
+myID = "DRONE_2"
 #Välj antingen drone 1 eller drone 2
 #===================================================================
 
