@@ -11,7 +11,7 @@ app.secret_key = 'dljsaklqk24e21cjn!Ew@@dsa5'
 
 #Give a unique ID for the drone
 #===================================================================
-myID = "DRONE_2"
+myID = "DRONE_1"
 #Välj antingen drone 1 eller drone 2
 #===================================================================
 
@@ -29,12 +29,9 @@ drone_info = {'id': myID,
             }
 
 def get_location():
-    try:
-        with open("coordinates.txt", "r") as f:
-            data = f.read().split(",")
-            lat = float(data[0])
-            long = float(data[1])
-            return lat, long
+    with open("coordinates.txt", "r") as f:
+        lat, long = f.read().strip().split(",")
+    return float(lat), float(long)
 
 # Fill in the IP address of server, and send the initial location of the drone to the SERVER
 #===================================================================
