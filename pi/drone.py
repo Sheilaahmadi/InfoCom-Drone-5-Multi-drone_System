@@ -35,7 +35,7 @@ def get_location():
 
 # Fill in the IP address of server, and send the initial location of the drone to the SERVER
 #===================================================================
-SERVER="http://192.168.10.4:5000/drone"
+SERVER="http://192.168.10.4:5001/drone"
 with requests.Session() as session:
     resp = session.post(SERVER, json=drone_info)
 #===================================================================
