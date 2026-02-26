@@ -35,8 +35,6 @@ def get_location():
             lat = float(data[0])
             long = float(data[1])
             return lat, long
-    except FileNotFoundError:
-        return 0.0, 0.0
 
 # Fill in the IP address of server, and send the initial location of the drone to the SERVER
 #===================================================================
